@@ -2,6 +2,9 @@
 set -euo pipefail
 # Shared shell script library
 
+export PS4='\[\033[0;33m\]+${BASH_SOURCE##*/}:${LINENO}:(${FUNCNAME[0]:-"?"}): \[\033[0;37m\]'
+set -x
+
 DIR=$(dirname "$0")
 RFC3339="%Y-%m-%dT%H:%M:%SZ"
 
