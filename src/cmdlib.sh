@@ -61,7 +61,7 @@ else
     # Enable arch-specific options for qemu
     case "$(arch)" in
         "x86_64")  QEMU_KVM="qemu-system-$(arch) -accel kvm"                          ;;
-        "aarch64") QEMU_KVM="qemu-system-$(arch) -accel kvm -M virt,gic-version=host" ;;
+        "aarch64") QEMU_KVM="qemu-system-$(arch)" ;;
         "ppc64le") QEMU_KVM="qemu-system-ppc64 -accel kvm"                            ;;
         "s390x")   QEMU_KVM="qemu-system-$(arch) -accel kvm -M s390-ccw-virtio"       ;;
         *)         fatal "Architecture $(arch) not supported"
@@ -139,9 +139,9 @@ preflight() {
         fatal "$(pwd) must be a volume"
     fi
 
-    if ! stat /dev/kvm >/dev/null; then
-        fatal "Unable to find /dev/kvm"
-    fi
+    # if ! stat /dev/kvm >/dev/null; then
+    #     fatal "Unable to find /dev/kvm"
+    # fi
 
     # permissions on /dev/kvm vary by (host) distro.  If it's
     # not writable, recreate it.
