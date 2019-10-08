@@ -490,6 +490,7 @@ EOF
 
     #shellcheck disable=SC2086
     ${QEMU_KVM} ${arch_args:-} \
+        -machine virt,gic-version=3 \
         -nodefaults -nographic -m 2048 -no-reboot -cpu host \
         -kernel "${vmbuilddir}/kernel" \
         -initrd "${vmbuilddir}/initrd" \
